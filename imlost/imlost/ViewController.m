@@ -30,7 +30,7 @@
 #import "MapPoint.h"
 #import "AudioRecordingManager.h"
 
-NSString * const kTesterPhoneNumberForText = @"+6262360908";
+NSString * const kTesterPhoneNumberForText = @"+4053341946";
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *button;
@@ -244,9 +244,9 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
     NSLog(@"Sending request.");
     
     // Common constants
-    NSString *kTwilioSID = @"ACb7eb9e4e001486531fd935b044df9401";
-    NSString *kTwilioSecret = @"8c401106628af8fac17b56c5060c022d";
-    NSString *kFromNumber = @"+6505675766";
+    NSString *kTwilioSID = @"AC384121e3ec0bc14697150a947f04e32f";
+    NSString *kTwilioSecret = @"0c6b44a8c5c143b04fe883251deb0b1e";
+    NSString *kFromNumber = @"+4055719717";
     
     //NSString *kToNumber = @"+4087188401";
     NSString *kMessage = [NSString stringWithFormat:@"Hello %@, %@ is lost at Location: %@", name,username,locationURL];
@@ -334,15 +334,15 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
 
 //    [self sendRequest: newLocation];
 
-//    static BOOL isTextSent = NO;
-//    if (!isTextSent)
-//    {
-//        Person * person = [[Person alloc] init];
-//        person.name = @"Mom";
-//        person.numbers = [NSArray arrayWithObject:kTesterPhoneNumberForText];
-//        [self sendMapTextToPerson:person];
-//        isTextSent = YES;
-//    }
+    static BOOL isTextSent = NO;
+    if (!isTextSent)
+    {
+        Person * person = [[Person alloc] init];
+        person.name = @"Mom";
+        person.numbers = [NSArray arrayWithObject:kTesterPhoneNumberForText];
+        [self sendMapTextToPerson:person];
+        isTextSent = YES;
+    }
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     // The location "unknown" error simply means the manager is currently unable to get the location.
