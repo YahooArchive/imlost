@@ -297,7 +297,9 @@ NSString * const kTesterPhoneNumberForText = @"+4053341946";
 }
 
 - (void)sendMapTextToPerson:(Person *)person {
-    NSString *locationURL = [NSString stringWithFormat:@"https://students6.ics.uci.edu/~limll/location.php?username=%@", username];
+//    NSString *locationURL = [NSString stringWithFormat:@"https://students6.ics.uci.edu/~limll/location.php?username=%@", username];
+    
+    NSString *locationURL = @"imlost://testing";
     for(NSString* number in person.numbers)
     {
         NSString *cleannedNumber = 

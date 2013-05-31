@@ -70,6 +70,17 @@
     
     return YES;
 }
+/**
+ Handles the imlost://.
+ */
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([[url scheme] isEqualToString:@"imlost"])
+	{
+        return YES;
+    }
+	return NO;
+}
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
