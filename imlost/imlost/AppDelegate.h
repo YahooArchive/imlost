@@ -33,7 +33,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) ViewController *viewController;
-@property (strong, nonatomic) FirstRunViewController *firstRunViewController;
+@property (strong, nonatomic) UINavigationController *navigationController;
 
 @end

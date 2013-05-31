@@ -34,6 +34,8 @@
 		C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1C3175839B00051887F /* FirstRunViewController.m */; };
 		C141A1C6175839B00051887F /* FirstRunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C4175839B00051887F /* FirstRunViewController.xib */; };
 		C141A1C817583ED40051887F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C141A1C717583ED40051887F /* MobileCoreServices.framework */; };
+		C141A1CC1758436D0051887F /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1CA1758436D0051887F /* SetupViewController.m */; };
+		C141A1CD1758436D0051887F /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1CB1758436D0051887F /* SetupViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,9 @@
 		C141A1C3175839B00051887F /* FirstRunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunViewController.m; sourceTree = "<group>"; };
 		C141A1C4175839B00051887F /* FirstRunViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstRunViewController.xib; sourceTree = "<group>"; };
 		C141A1C717583ED40051887F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C141A1C91758436D0051887F /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
+		C141A1CA1758436D0051887F /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
+		C141A1CB1758436D0051887F /* SetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +153,9 @@
 				0A528E50172143AF0038609E /* TrackingViewController.h */,
 				0A528E51172143AF0038609E /* TrackingViewController.m */,
 				0A528E25172143740038609E /* Supporting Files */,
+				C141A1C91758436D0051887F /* SetupViewController.h */,
+				C141A1CA1758436D0051887F /* SetupViewController.m */,
+				C141A1CB1758436D0051887F /* SetupViewController.xib */,
 				C141A1C2175839B00051887F /* FirstRunViewController.h */,
 				C141A1C3175839B00051887F /* FirstRunViewController.m */,
 				C141A1C4175839B00051887F /* FirstRunViewController.xib */,
@@ -234,6 +242,7 @@
 				0A528E681721449D0038609E /* icon@2x.png in Resources */,
 				C141A1C1175838540051887F /* ViewController.xib in Resources */,
 				C141A1C6175839B00051887F /* FirstRunViewController.xib in Resources */,
+				C141A1CD1758436D0051887F /* SetupViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +263,7 @@
 				0A528E59172143AF0038609E /* MapPin.m in Sources */,
 				0A528E5A172143AF0038609E /* TrackingViewController.m in Sources */,
 				C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */,
+				C141A1CC1758436D0051887F /* SetupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

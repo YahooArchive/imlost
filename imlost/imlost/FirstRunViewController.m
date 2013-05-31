@@ -7,14 +7,14 @@
 //
 
 #import "FirstRunViewController.h"
-#import <MobileCoreServices/UTCoreTypes.h>
+#import "SetupViewController.h"
 
 @interface FirstRunViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *kidButton;
 @property (weak, nonatomic) IBOutlet UIButton *mommyButton;
 
+@property (strong, nonatomic) SetupViewController *setupVC;
 
-@property (strong, nonatomic) UIImagePickerController *cameraController;
 @end
 
 @implementation FirstRunViewController
@@ -36,6 +36,7 @@
     [self.kidButton addTarget:self action:@selector(kidButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.mommyButton addTarget:self action:@selector(mommyButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
+    self.setupVC = [[SetupViewController alloc] initWithNibName:@"SetupViewController" bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,64 +46,14 @@
 }
 
 
-#pragma mark Button Pressed
-
 - (void) kidButtonPressed: (id) sender
 {
-    NSLog(@"kid button pressed");
-    
-    //take a picture on front facing camera
-    if ([UIImagePickerController isCameraDeviceAvailable:
-         UIImagePickerControllerCameraDeviceFront || UIImagePickerControllerCameraDeviceRear]) {
-        self.cameraController = [[UIImagePickerController alloc] init];
-        self.cameraController.sourceType = UIImagePickerControllerSourceTypeCamera;
-
-        // Displays a control that allows the user to choose picture or
-        // movie capture, if both are available:
-         self.cameraController.mediaTypes =
-        [UIImagePickerController availableMediaTypesForSourceType:
-         UIImagePickerControllerSourceTypeCamera];
-       
-        self.cameraController.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-        
-        // Hides the controls for moving & scaling pictures, or for
-        // trimming movies. To instead show the controls, use YES.
-         self.cameraController.allowsEditing = NO;
-        
-         self.cameraController.delegate = self;
-        
-        [self presentViewController:self.cameraController animated:YES completion:^{
-            
-        }];
-        
-    }
-    //
+    [self.navigationController pushViewController:self.setupVC animated:YES];
 }
 
 - (void) mommyButtonPressed: (id) sender
 {
-    NSLog(@"mommy button pressed");
-}
-
-#pragma mark UIImagePickerControllerDelegate
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    NSLog(@"finished taking image");
-    
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    NSLog(@"image taking action cancelled");
-    
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController pushViewController:self.setupVC animated:YES];
 }
 
 @end

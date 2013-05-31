@@ -33,6 +33,12 @@
 
 NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAppHasLaunchedBefore";
 
+@interface AppDelegate()
+
+@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) FirstRunViewController *firstRunViewController;
+
+@end
 
 @implementation AppDelegate {
 //	NSMutableArray *people;
@@ -41,7 +47,6 @@ NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAp
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
     /*
     
     people = [[NSMutableArray alloc] init];
@@ -98,7 +103,7 @@ NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAp
         // app already launched
         NSLog(@"app already launched");
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-        self.window.rootViewController = self.viewController;
+        self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     }
     else
     {        
@@ -108,9 +113,12 @@ NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAp
         // This is the first launch ever
         NSLog(@"first launch ever");
         self.firstRunViewController = [[FirstRunViewController alloc] initWithNibName:@"FirstRunViewController" bundle:nil];
-        self.window.rootViewController = self.firstRunViewController;
-
+        self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.firstRunViewController];
     }
+    
+    self.navigationController.navigationBar.topItem.title = @"I'm Lost";
+    
+    self.window.rootViewController = self.navigationController;
 
     [self.window makeKeyAndVisible];
 }
