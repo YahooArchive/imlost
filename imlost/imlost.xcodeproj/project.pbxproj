@@ -33,6 +33,7 @@
 		C141A1C1175838540051887F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C0175838540051887F /* ViewController.xib */; };
 		C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1C3175839B00051887F /* FirstRunViewController.m */; };
 		C141A1C6175839B00051887F /* FirstRunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C4175839B00051887F /* FirstRunViewController.xib */; };
+		C141A1C817583ED40051887F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C141A1C717583ED40051887F /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		C141A1C2175839B00051887F /* FirstRunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstRunViewController.h; sourceTree = "<group>"; };
 		C141A1C3175839B00051887F /* FirstRunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunViewController.m; sourceTree = "<group>"; };
 		C141A1C4175839B00051887F /* FirstRunViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstRunViewController.xib; sourceTree = "<group>"; };
+		C141A1C717583ED40051887F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C141A1C817583ED40051887F /* MobileCoreServices.framework in Frameworks */,
 				0A528E64172144310038609E /* MapKit.framework in Frameworks */,
 				0A528E621721442B0038609E /* CoreLocation.framework in Frameworks */,
 				0A528E1F172143740038609E /* UIKit.framework in Frameworks */,
@@ -114,6 +117,7 @@
 		0A528E1D172143740038609E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C141A1C717583ED40051887F /* MobileCoreServices.framework */,
 				0A528E63172144310038609E /* MapKit.framework */,
 				0A528E611721442B0038609E /* CoreLocation.framework */,
 				0A528E1E172143740038609E /* UIKit.framework */,
