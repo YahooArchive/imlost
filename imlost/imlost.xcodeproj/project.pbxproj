@@ -30,6 +30,7 @@
 		0A528E64172144310038609E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A528E63172144310038609E /* MapKit.framework */; };
 		0A528E66172144980038609E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E65172144970038609E /* icon.png */; };
 		0A528E681721449D0038609E /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E671721449D0038609E /* icon@2x.png */; };
+		50B8DB7C175886A100D4C2FF /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8DB7B175886A100D4C2FF /* MapPoint.m */; };
 		C141A1C1175838540051887F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C0175838540051887F /* ViewController.xib */; };
 		C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1C3175839B00051887F /* FirstRunViewController.m */; };
 		C141A1C6175839B00051887F /* FirstRunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C4175839B00051887F /* FirstRunViewController.xib */; };
@@ -76,6 +77,8 @@
 		0A528E63172144310038609E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0A528E65172144970038609E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0A528E671721449D0038609E /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		50B8DB7A175886A100D4C2FF /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
+		50B8DB7B175886A100D4C2FF /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
 		C141A1C0175838540051887F /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		C141A1C2175839B00051887F /* FirstRunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstRunViewController.h; sourceTree = "<group>"; };
 		C141A1C3175839B00051887F /* FirstRunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunViewController.m; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				C141A1C2175839B00051887F /* FirstRunViewController.h */,
 				C141A1C3175839B00051887F /* FirstRunViewController.m */,
 				C141A1C4175839B00051887F /* FirstRunViewController.xib */,
+				50B8DB7A175886A100D4C2FF /* MapPoint.h */,
+				50B8DB7B175886A100D4C2FF /* MapPoint.m */,
 			);
 			path = imlost;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				0A528E5A172143AF0038609E /* TrackingViewController.m in Sources */,
 				C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */,
 				C141A1CC1758436D0051887F /* SetupViewController.m in Sources */,
+				50B8DB7C175886A100D4C2FF /* MapPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +319,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -328,6 +335,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -344,6 +352,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -352,6 +361,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -360,10 +370,14 @@
 		0A528E3F172143740038609E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Fransen (7S2SY4ZDJA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Fransen (7S2SY4ZDJA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "imlost/imlost-Prefix.pch";
 				INFOPLIST_FILE = "imlost/imlost-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7641AFBE-14DC-47D0-9FD2-F329EAC9FF3B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7641AFBE-14DC-47D0-9FD2-F329EAC9FF3B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -371,10 +385,14 @@
 		0A528E40172143740038609E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Fransen (7S2SY4ZDJA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Fransen (7S2SY4ZDJA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "imlost/imlost-Prefix.pch";
 				INFOPLIST_FILE = "imlost/imlost-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7641AFBE-14DC-47D0-9FD2-F329EAC9FF3B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7641AFBE-14DC-47D0-9FD2-F329EAC9FF3B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

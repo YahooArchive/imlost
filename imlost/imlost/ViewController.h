@@ -26,14 +26,19 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
 @interface ViewController : UIViewController <CLLocationManagerDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *button;
 @property (strong, nonatomic) NSString *username;
 
-@property (nonatomic, retain) CLLocationManager *locationManager;
-@property (nonatomic, retain) NSMutableArray *locationMeasurements;
-@property (nonatomic, retain) CLLocation *bestEffortAtLocation;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSMutableArray *locationMeasurements;
+@property (nonatomic, strong) CLLocation *bestEffortAtLocation;
+
+@property (nonatomic, strong) NSMutableArray *locations;
+@property (nonatomic, strong) MKMapView *mapView;
+
 -(IBAction)pressed:(id)sender;
 
 @end

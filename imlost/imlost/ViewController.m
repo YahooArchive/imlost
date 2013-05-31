@@ -27,15 +27,17 @@
 #import "ViewController.h"
 #import "DataManager.h"
 #import "Person.h"
+#import "MapPoint.h"
 
 @interface ViewController ()
 @end
 
 @implementation ViewController
 @synthesize locationManager;
-@synthesize locationMeasurements;
+@synthesize locationMeasurements, locations;
 @synthesize bestEffortAtLocation;
 @synthesize username;
+@synthesize mapView;
 
 - (void)viewDidLoad
 {
@@ -43,21 +45,160 @@
 //	// Do any additional setup after loading the view, typically from a nib.
 //    
 //    // Create the manager object
-//    locationManager = [[CLLocationManager alloc] init];
-//    locationManager.delegate = self;
-//    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+//
 //    // This is the most important property to set for the manager. It ultimately determines how the manager will
 //    // attempt to acquire location and thus, the amount of power that will be consumed.
-//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    locationManager.delegate = self;
+    [locationManager startUpdatingLocation];
+//
 //    username = @"derek";
+    
+    locations = [[NSMutableArray alloc] initWithCapacity:20];
+    [self createFakeLocations];
+    
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:self.mapView];
+    
+    [self startRoute];
+}
+
+//TODO:nanshi - create fake CLLocation locations
+// In the future, these locations should be obtained from server side
+- (void)createFakeLocations
+{
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:37.409966 longitude:-122.026181];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.411517 longitude:-122.026084];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.412327 longitude:-122.025923];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.413554 longitude:-122.025548];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.414398 longitude:-122.025194];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.415318 longitude:-122.024915];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.416119 longitude:-122.024764];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.416409 longitude:-122.025548];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.416758 longitude:-122.026159];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.417193 longitude:-122.026513];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.417917 longitude:-122.026792];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.418462 longitude:-122.026406];
+    [locations addObject:(loc)];
+    
+    loc = [[CLLocation alloc] initWithLatitude:37.4183 longitude:-122.025601];
+    [locations addObject:(loc)];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)startRoute
+{
+    if(locations) {
+        // Remove all annotations
+        [mapView removeAnnotations:[mapView annotations]];
+    }
+    
+    [self centerMap];
+    
+    // Origin Location
+    // TODO:nanshi - For demo, this is mom's location 37.409966,-122.026181
+    CLLocationCoordinate2D locOrigin;
+    locOrigin.latitude = 37.409966;
+    locOrigin.longitude = -122.026181;
+    MapPoint *origin = [[MapPoint alloc] initWithCoordinate:locOrigin title:@"Mom" subtitle:@""];
+    [mapView addAnnotation:origin];
+    
+    // Destination Location.
+    // TODO:nanshi - For demo, this is kid's location 37.4183,-122.025601
+    CLLocationCoordinate2D locDestination;
+    locDestination.latitude = 37.4183;
+    locDestination.longitude = -122.025601;
+    MapPoint *destination = [[MapPoint alloc] initWithCoordinate:locDestination title:@"Kid" subtitle:@""];
+    [mapView addAnnotation:destination];
+    
+    
+//    arrRoutePoints = [self getRoutePointFrom:origin to:destination];
+    [self drawRoute];
+}
+
+- (void)drawRoute
+{
+    int numPoints = [locations count];
+    if (numPoints > 1)
+    {
+        CLLocationCoordinate2D* coords = malloc(numPoints * sizeof(CLLocationCoordinate2D));
+        for (int i = 0; i < numPoints; i++)
+        {
+            CLLocation* current = [locations objectAtIndex:i];
+            coords[i] = current.coordinate;
+        }
+        
+        MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coords count:numPoints];
+        free(coords);
+        
+        [mapView addOverlay:polyline];
+        [mapView setNeedsDisplay];
+    }
+}
+
+- (void)centerMap
+{
+    MKCoordinateRegion region;
+    
+    CLLocationDegrees maxLat = -90;
+    CLLocationDegrees maxLon = -180;
+    CLLocationDegrees minLat = 90;
+    CLLocationDegrees minLon = 180;
+    
+    for(int idx = 0; idx < locations.count; idx++)
+    {
+        CLLocation* currentLocation = [locations objectAtIndex:idx];
+        
+        if(currentLocation.coordinate.latitude > maxLat)
+            maxLat = currentLocation.coordinate.latitude;
+        if(currentLocation.coordinate.latitude < minLat)
+            minLat = currentLocation.coordinate.latitude;
+        if(currentLocation.coordinate.longitude > maxLon)
+            maxLon = currentLocation.coordinate.longitude;
+        if(currentLocation.coordinate.longitude < minLon)
+            minLon = currentLocation.coordinate.longitude;
+    }
+    
+    region.center.latitude     = (maxLat + minLat) / 2;
+    region.center.longitude    = (maxLon + minLon) / 2;
+    region.span.latitudeDelta  = maxLat - minLat;
+    region.span.longitudeDelta = maxLon - minLon;
+    
+    [mapView setRegion:region animated:YES];
 }
 
 -(void)sendText:(NSString *)locationURL phoneNumber:(NSString*)kToNumber personName:(NSString*)name
@@ -118,6 +259,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     // store all of the measurements, just so we can see what kind of data we might receive
     [locationMeasurements addObject:newLocation];
+    
     // test the age of the location measurement to determine if the measurement is cached
     // in most cases you will not want to rely on cached measurements
     NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
@@ -146,7 +288,7 @@
     }
     // update the display with the new location data
     //[self.tableView reloadData];
-    [self sendRequest: newLocation];
+//    [self sendRequest: newLocation];
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     // The location "unknown" error simply means the manager is currently unable to get the location.
@@ -179,6 +321,5 @@
         NSLog(@"Error getting %@, HTTP status code %i", url, [responseCode statusCode]);
     }
 }
-
 
 @end
