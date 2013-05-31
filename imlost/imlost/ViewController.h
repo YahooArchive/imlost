@@ -29,17 +29,8 @@
 #import <MapKit/MapKit.h>
 
 @interface ViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
-@property (strong, nonatomic) IBOutlet UIButton *button;
-@property (strong, nonatomic) NSString *username;
+@property (assign, nonatomic) BOOL isDependent;
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) NSMutableArray *locationMeasurements;
-@property (nonatomic, strong) CLLocation *bestEffortAtLocation;
-
-@property (nonatomic, strong) NSMutableArray *locations;
-@property (nonatomic, strong) MKMapView *mapView;
-@property (strong, nonatomic) MKPolyline *polyline;
-
--(IBAction)pressed:(id)sender;
+- (IBAction)onPlayAudioButtonTapped:(id)sender;
 
 @end

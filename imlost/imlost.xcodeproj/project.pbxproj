@@ -30,6 +30,7 @@
 		0A528E64172144310038609E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A528E63172144310038609E /* MapKit.framework */; };
 		0A528E66172144980038609E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E65172144970038609E /* icon.png */; };
 		0A528E681721449D0038609E /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E671721449D0038609E /* icon@2x.png */; };
+		462F77151758E50B006486BA /* AudioRecordingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 462F77141758E50A006486BA /* AudioRecordingManager.m */; };
 		50B8DB7C175886A100D4C2FF /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8DB7B175886A100D4C2FF /* MapPoint.m */; };
 		C141A1C1175838540051887F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C0175838540051887F /* ViewController.xib */; };
 		C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1C3175839B00051887F /* FirstRunViewController.m */; };
@@ -77,6 +78,8 @@
 		0A528E63172144310038609E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0A528E65172144970038609E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0A528E671721449D0038609E /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		462F77131758E50A006486BA /* AudioRecordingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingManager.h; sourceTree = "<group>"; };
+		462F77141758E50A006486BA /* AudioRecordingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingManager.m; sourceTree = "<group>"; };
 		50B8DB7A175886A100D4C2FF /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
 		50B8DB7B175886A100D4C2FF /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
 		C141A1C0175838540051887F /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
@@ -173,6 +176,8 @@
 				C141A1C4175839B00051887F /* FirstRunViewController.xib */,
 				50B8DB7A175886A100D4C2FF /* MapPoint.h */,
 				50B8DB7B175886A100D4C2FF /* MapPoint.m */,
+				462F77131758E50A006486BA /* AudioRecordingManager.h */,
+				462F77141758E50A006486BA /* AudioRecordingManager.m */,
 			);
 			path = imlost;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */,
 				C141A1CC1758436D0051887F /* SetupViewController.m in Sources */,
 				50B8DB7C175886A100D4C2FF /* MapPoint.m in Sources */,
+				462F77151758E50B006486BA /* AudioRecordingManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,14 +376,14 @@
 		0A528E3F172143740038609E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Fransen (7S2SY4ZDJA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Fransen (7S2SY4ZDJA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "imlost/imlost-Prefix.pch";
 				INFOPLIST_FILE = "imlost/imlost-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7641AFBE-14DC-47D0-9FD2-F329EAC9FF3B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7641AFBE-14DC-47D0-9FD2-F329EAC9FF3B";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -385,14 +391,14 @@
 		0A528E40172143740038609E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Steven Fransen (7S2SY4ZDJA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Steven Fransen (7S2SY4ZDJA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "imlost/imlost-Prefix.pch";
 				INFOPLIST_FILE = "imlost/imlost-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7641AFBE-14DC-47D0-9FD2-F329EAC9FF3B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7641AFBE-14DC-47D0-9FD2-F329EAC9FF3B";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

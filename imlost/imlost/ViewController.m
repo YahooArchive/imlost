@@ -28,8 +28,29 @@
 #import "DataManager.h"
 #import "Person.h"
 #import "MapPoint.h"
+#import "AudioRecordingManager.h"
+
+NSString * const kTesterPhoneNumberForText = @"+6262360908";
 
 @interface ViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *button;
+@property (strong, nonatomic) NSString *username;
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSMutableArray *locationMeasurements;
+@property (nonatomic, strong) CLLocation *bestEffortAtLocation;
+
+@property (nonatomic, strong) NSMutableArray *locations;
+@property (nonatomic, strong) MKMapView *mapView;
+@property (strong, nonatomic) MKPolyline *polyline;
+
+@property (strong, nonatomic) NSString *audioFilepath;
+@property (strong, nonatomic) AudioRecordingManager * audioManager;
+
+@property (weak, nonatomic) IBOutlet MKMapView *dependentMapView;
+
+//-(IBAction)pressed:(id)sender;
+
 @end
 
 @implementation ViewController
@@ -52,11 +73,14 @@
 //    // attempt to acquire location and thus, the amount of power that will be consumed.
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.delegate = self;
     [locationManager startUpdatingLocation];
 //
-//    username = @"derek";
-    
+    username = @"Bobby";
+
+    // TODO: create a setting class and get the audio file path from settings
+    self.audioFilepath = [NSString stringWithFormat:@"%@/%@.caf", [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"], @"I'm-Lost-Audio" ];
+    self.audioManager = [[AudioRecordingManager alloc] init];
+
     locations = [[NSMutableArray alloc] initWithCapacity:20];
     [self createFakeLocations];
     
@@ -64,11 +88,14 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
-    self.mapView.delegate = self;
-    [self.view addSubview:self.mapView];
-    
-    [self startRoute];
+    if (!self.isDependent)
+    {
+        self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+        self.mapView.delegate = self;
+        [self.view addSubview:self.mapView];
+
+        [self startRoute];
+    }
 }
 
 //TODO:nanshi - create fake CLLocation locations
@@ -248,24 +275,28 @@
     }
 }
 
--(IBAction)pressed:(id)sender{
-    [locationManager startUpdatingLocation];
-    //[self performSelector:@selector(stopUpdatingLocation:) withObject:@"Timed Out" afterDelay:45];
-    //[locationManager stopUpdatingLocation];
-    
-    NSMutableArray *people=[DataManager readFromPlist:@"people.plist"];
-    for(Person* person in people)
+- (void)sendMapTextToPerson:(Person *)person {
+    NSString *locationURL = [NSString stringWithFormat:@"https://students6.ics.uci.edu/~limll/location.php?username=%@", username];
+    for(NSString* number in person.numbers)
     {
-        NSString *locationURL = [NSString stringWithFormat:@"https://students6.ics.uci.edu/~limll/location.php?username=%@", username];
-        for(NSString* number in person.numbers)
-        {
-            NSString *cleannedNumber = 
-             [NSString stringWithFormat:@"+%@",
-             [[number componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]]componentsJoinedByString:@""]];
-            [self sendText:locationURL phoneNumber:cleannedNumber personName:person.name];
-        }
+        NSString *cleannedNumber = 
+        [NSString stringWithFormat:@"+%@",
+         [[number componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]]componentsJoinedByString:@""]];
+        [self sendText:locationURL phoneNumber:cleannedNumber personName:person.name];
     }
 }
+
+//-(IBAction)pressed:(id)sender{
+//    [locationManager startUpdatingLocation];
+//    //[self performSelector:@selector(stopUpdatingLocation:) withObject:@"Timed Out" afterDelay:45];
+//    //[locationManager stopUpdatingLocation];
+//    
+//    NSMutableArray *people=[DataManager readFromPlist:@"people.plist"];
+//    for(Person* person in people)
+//    {
+//        [self sendMapTextToPerson:person];
+//    }
+//}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     // store all of the measurements, just so we can see what kind of data we might receive
@@ -297,9 +328,21 @@
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdatingLocation:) object:nil];
         }
     }
+
     // update the display with the new location data
-    //[self.tableView reloadData];
+    [self updateMapRegion:newLocation.coordinate];
+
 //    [self sendRequest: newLocation];
+
+//    static BOOL isTextSent = NO;
+//    if (!isTextSent)
+//    {
+//        Person * person = [[Person alloc] init];
+//        person.name = @"Mom";
+//        person.numbers = [NSArray arrayWithObject:kTesterPhoneNumberForText];
+//        [self sendMapTextToPerson:person];
+//        isTextSent = YES;
+//    }
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     // The location "unknown" error simply means the manager is currently unable to get the location.
@@ -313,6 +356,18 @@
 - (void)stopUpdatingLocation:(NSString *)state {
     [locationManager stopUpdatingLocation];
     locationManager.delegate = nil;
+}
+
+- (void)updateMapRegion:(CLLocationCoordinate2D)coordinate
+{
+    MKCoordinateSpan span;
+    span.latitudeDelta = 0.01;
+    span.longitudeDelta = 0.01;
+    
+    MKCoordinateRegion region;
+    region.span = span;
+    region.center = coordinate;
+    [self.dependentMapView setRegion:region animated:YES];
 }
 
 - (void)sendRequest:(CLLocation *)newLocation
@@ -331,6 +386,11 @@
     if([responseCode statusCode] != 200){
         NSLog(@"Error getting %@, HTTP status code %i", url, [responseCode statusCode]);
     }
+}
+
+- (IBAction)onPlayAudioButtonTapped:(id)sender
+{
+    [self.audioManager playback:self.audioFilepath];
 }
 
 @end

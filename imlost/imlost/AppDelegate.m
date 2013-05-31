@@ -31,7 +31,11 @@
 #import "PeopleViewController.h"
 #import "DataManager.h"
 
-NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAppHasLaunchedBefore";
+//NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAppHasLaunchedBefore";
+
+// TODO: ADD COLOR constants
+// blue: RGB: 158 222 240
+// 171 226 179 for green
 
 @interface AppDelegate()
 
@@ -98,18 +102,29 @@ NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAp
 
 - (void) firstTimeCheck
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kYFUserDefaultsKeyAppHasLaunchedBefore])
+    NSString * userType = [[NSUserDefaults standardUserDefaults] objectForKey:kYFUserDefaultsKeyUserType];
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:kYFUserDefaultsKeyAppHasLaunchedBefore])
+    if (userType != nil)
     {
         // app already launched
         NSLog(@"app already launched");
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+
+        self.viewController.isDependent = [userType isEqualToString:@"Dependent"];
+
         self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+
+        // set up triple tap on nav bar, to reset user type
+        UITapGestureRecognizer * tripleTapRecognizer = [[UITapGestureRecognizer alloc] init];
+        tripleTapRecognizer.numberOfTapsRequired = 3;
+        [tripleTapRecognizer addTarget:self action:@selector(onNavBarTripleTap:)];
+        [self.navigationController.navigationBar addGestureRecognizer:tripleTapRecognizer];
     }
     else
     {        
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYFUserDefaultsKeyAppHasLaunchedBefore];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYFUserDefaultsKeyAppHasLaunchedBefore];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+
         // This is the first launch ever
         NSLog(@"first launch ever");
         self.firstRunViewController = [[FirstRunViewController alloc] initWithNibName:@"FirstRunViewController" bundle:nil];
@@ -121,6 +136,13 @@ NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAp
     self.window.rootViewController = self.navigationController;
 
     [self.window makeKeyAndVisible];
+}
+
+- (void) onNavBarTripleTap:(id)sender
+{
+    // for quicker debugging, reset the user type
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kYFUserDefaultsKeyUserType];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

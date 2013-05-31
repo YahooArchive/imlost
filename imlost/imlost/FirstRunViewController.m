@@ -9,6 +9,8 @@
 #import "FirstRunViewController.h"
 #import "SetupViewController.h"
 
+NSString * const kYFUserDefaultsKeyUserType = @"kYFUserDefaultsKeyUserType";
+
 @interface FirstRunViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *kidButton;
 @property (weak, nonatomic) IBOutlet UIButton *mommyButton;
@@ -45,14 +47,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (void) kidButtonPressed: (id) sender
 {
+    [[NSUserDefaults standardUserDefaults] setObject:@"Dependent" forKey:kYFUserDefaultsKeyUserType];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController pushViewController:self.setupVC animated:YES];
 }
 
 - (void) mommyButtonPressed: (id) sender
 {
+    [[NSUserDefaults standardUserDefaults] setObject:@"CareGiver" forKey:kYFUserDefaultsKeyUserType];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController pushViewController:self.setupVC animated:YES];
 }
 
