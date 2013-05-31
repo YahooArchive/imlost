@@ -28,7 +28,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate>
+@interface ViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *button;
 @property (strong, nonatomic) NSString *username;
 
@@ -38,6 +38,7 @@
 
 @property (nonatomic, strong) NSMutableArray *locations;
 @property (nonatomic, strong) MKMapView *mapView;
+@property (strong, nonatomic) MKPolyline *polyline;
 
 -(IBAction)pressed:(id)sender;
 

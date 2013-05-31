@@ -65,6 +65,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    self.mapView.delegate = self;
     [self.view addSubview:self.mapView];
     
     [self startRoute];
@@ -162,12 +163,22 @@
             coords[i] = current.coordinate;
         }
         
-        MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coords count:numPoints];
+        _polyline = [MKPolyline polylineWithCoordinates:coords count:numPoints];
         free(coords);
         
-        [mapView addOverlay:polyline];
+        [mapView addOverlay:_polyline];
         [mapView setNeedsDisplay];
     }
+}
+
+// MKMapViewDelegate Method -- for viewForOverlay
+- (MKOverlayView*)mapView:(MKMapView*)theMapView viewForOverlay:(id <MKOverlay>)overlay
+{
+    MKPolylineView *view = [[MKPolylineView alloc] initWithPolyline:_polyline];
+    view.fillColor = [UIColor greenColor];
+    view.strokeColor = [UIColor greenColor];
+    view.lineWidth = 6;
+    return view;
 }
 
 - (void)centerMap
