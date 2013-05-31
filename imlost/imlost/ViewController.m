@@ -1,7 +1,7 @@
 //
 // Copyright (c) 2013, Sivan Goldstein
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //     * Redistributions of source code must retain the above copyright
@@ -11,7 +11,7 @@
 //       documentation and/or other materials provided with the distribution.
 //     * The names of its contributors may not be used to endorse or promote products
 //       derived from this software without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -22,7 +22,7 @@
 // ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// 
+//
 
 #import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -31,7 +31,7 @@
 #import "Person.h"
 #import "MapPoint.h"
 #import "AudioRecordingManager.h"
-
+#import "CustomizedAnnotationView.h"
 
 NSString * const kTesterPhoneNumberForText = @"+6262360908";
 
@@ -69,24 +69,24 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//	// Do any additional setup after loading the view, typically from a nib.
-//    
-//    // Create the manager object
+    //	// Do any additional setup after loading the view, typically from a nib.
+    //
+    //    // Create the manager object
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
-//
-//    // This is the most important property to set for the manager. It ultimately determines how the manager will
-//    // attempt to acquire location and thus, the amount of power that will be consumed.
+    //
+    //    // This is the most important property to set for the manager. It ultimately determines how the manager will
+    //    // attempt to acquire location and thus, the amount of power that will be consumed.
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     [locationManager startUpdatingLocation];
-//
+    //
     username = @"Bobby";
-
+    
     // TODO: create a setting class and get the audio file path from settings
     self.audioFilepath = [NSString stringWithFormat:@"%@/%@.caf", [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"], @"I'm-Lost-Audio" ];
     self.audioManager = [[AudioRecordingManager alloc] init];
-
+    
     locations = [[NSMutableArray alloc] initWithCapacity:20];
     [self createFakeLocations];
     
@@ -99,7 +99,7 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
         self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
         self.mapView.delegate = self;
         [self.view addSubview:self.mapView];
-
+        
         [self startRoute];
     }
     else
@@ -109,11 +109,11 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             CGRect frameOriginal = self.imageviewKid.frame;
             CGRect frame = frameOriginal;
-//            frame.origin.x = CGRectGetMidX(frameOriginal);
-//            frame.origin.y = CGRectGetMidY(frameOriginal);
+            //            frame.origin.x = CGRectGetMidX(frameOriginal);
+            //            frame.origin.y = CGRectGetMidY(frameOriginal);
             self.imageviewKid.frame = frame;
             self.imageviewKid.hidden = NO;
-
+            
             [self playAudio];
         });
     }
@@ -184,6 +184,7 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
     locOrigin.latitude = 37.409966;
     locOrigin.longitude = -122.026181;
     MapPoint *origin = [[MapPoint alloc] initWithCoordinate:locOrigin title:@"Mom" subtitle:@""];
+    origin.type = 0;
     [mapView addAnnotation:origin];
     
     // Destination Location.
@@ -192,10 +193,11 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
     locDestination.latitude = 37.4183;
     locDestination.longitude = -122.025601;
     MapPoint *destination = [[MapPoint alloc] initWithCoordinate:locDestination title:@"Kid" subtitle:@""];
+    destination.type = 1;
     [mapView addAnnotation:destination];
     
     
-//    arrRoutePoints = [self getRoutePointFrom:origin to:destination];
+    //    arrRoutePoints = [self getRoutePointFrom:origin to:destination];
     [self drawRoute];
 }
 
@@ -223,8 +225,9 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
 - (MKOverlayView*)mapView:(MKMapView*)theMapView viewForOverlay:(id <MKOverlay>)overlay
 {
     MKPolylineView *view = [[MKPolylineView alloc] initWithPolyline:_polyline];
-    view.fillColor = [UIColor greenColor];
-    view.strokeColor = [UIColor greenColor];
+    UIColor *routeColor = [UIColor colorWithRed:116.0f/255.0f green:116.0f/255.0f blue:120.0f/255.0f alpha:1.0f];
+    view.fillColor = routeColor;
+    view.strokeColor = routeColor;
     view.lineWidth = 6;
     return view;
 }
@@ -258,6 +261,42 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
     region.span.longitudeDelta = maxLon - minLon;
     
     [mapView setRegion:region animated:YES];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mv viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    NSString *annotationIdentifier = @"PinViewAnnotation";
+    
+    CustomizedAnnotationView *pinView = (CustomizedAnnotationView *) [mapView
+                                                                      dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+    
+    if (!pinView)
+    {
+        pinView = [[CustomizedAnnotationView alloc]
+                   initWithAnnotation:annotation
+                   reuseIdentifier:annotationIdentifier];
+        
+        //[pinView setPinColor:MKPinAnnotationColorGreen];
+        // pinView.animatesDrop = YES;
+        pinView.canShowCallout = YES;
+        
+        MapPoint *mapPoint = (MapPoint *) annotation;
+        NSInteger type = mapPoint.type;
+        
+        UIImage *image = [UIImage imageNamed: (type == 0) ? @"blue_dot.png" : @"green_dot.png"];
+        //        [image setFrame:CGRectMake(0, 0, 30, 30)];
+        [pinView setImage: image];
+    }
+    else
+    {
+        pinView.annotation = annotation;
+    }
+    
+    return pinView;
+    
 }
 
 -(void)sendText:(NSString *)locationURL phoneNumber:(NSString*)kToNumber personName:(NSString*)name
@@ -297,12 +336,12 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
 }
 
 - (void)sendMapTextToPerson:(Person *)person {
-//    NSString *locationURL = [NSString stringWithFormat:@"https://students6.ics.uci.edu/~limll/location.php?username=%@", username];
+    //    NSString *locationURL = [NSString stringWithFormat:@"https://students6.ics.uci.edu/~limll/location.php?username=%@", username];
     
     NSString *locationURL = @"imlost://locate";
     for(NSString* number in person.numbers)
     {
-        NSString *cleannedNumber = 
+        NSString *cleannedNumber =
         [NSString stringWithFormat:@"+%@",
          [[number componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]]componentsJoinedByString:@""]];
         [self sendText:locationURL phoneNumber:cleannedNumber personName:person.name];
@@ -313,7 +352,7 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
 //    [locationManager startUpdatingLocation];
 //    //[self performSelector:@selector(stopUpdatingLocation:) withObject:@"Timed Out" afterDelay:45];
 //    //[locationManager stopUpdatingLocation];
-//    
+//
 //    NSMutableArray *people=[DataManager readFromPlist:@"people.plist"];
 //    for(Person* person in people)
 //    {
@@ -351,12 +390,12 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdatingLocation:) object:nil];
         }
     }
-
+    
     // update the display with the new location data
     [self updateMapRegion:newLocation.coordinate];
-
-//    [self sendRequest: newLocation];
-
+    
+    //    [self sendRequest: newLocation];
+    
     static BOOL isTextSent = NO;
     if (!isTextSent && self.isDependent)
     {

@@ -36,6 +36,9 @@
 		462F771C175909E5006486BA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 462F771A175909C2006486BA /* QuartzCore.framework */; };
 		462F771E17590CB9006486BA /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 462F771D17590CB9006486BA /* plus.png */; };
 		50B8DB7C175886A100D4C2FF /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8DB7B175886A100D4C2FF /* MapPoint.m */; };
+		50B8DB891759268F00D4C2FF /* CustomizedAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8DB881759268F00D4C2FF /* CustomizedAnnotationView.m */; };
+		50B8DB8C1759271400D4C2FF /* blue_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 50B8DB8A1759271400D4C2FF /* blue_dot.png */; };
+		50B8DB8D1759271400D4C2FF /* green_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 50B8DB8B1759271400D4C2FF /* green_dot.png */; };
 		C141A1C1175838540051887F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C0175838540051887F /* ViewController.xib */; };
 		C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1C3175839B00051887F /* FirstRunViewController.m */; };
 		C141A1C6175839B00051887F /* FirstRunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C4175839B00051887F /* FirstRunViewController.xib */; };
@@ -90,6 +93,10 @@
 		462F771D17590CB9006486BA /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = images/plus.png; sourceTree = "<group>"; };
 		50B8DB7A175886A100D4C2FF /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
 		50B8DB7B175886A100D4C2FF /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
+		50B8DB871759268F00D4C2FF /* CustomizedAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedAnnotationView.h; sourceTree = "<group>"; };
+		50B8DB881759268F00D4C2FF /* CustomizedAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedAnnotationView.m; sourceTree = "<group>"; };
+		50B8DB8A1759271400D4C2FF /* blue_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_dot.png; sourceTree = "<group>"; };
+		50B8DB8B1759271400D4C2FF /* green_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_dot.png; sourceTree = "<group>"; };
 		C141A1C0175838540051887F /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		C141A1C2175839B00051887F /* FirstRunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstRunViewController.h; sourceTree = "<group>"; };
 		C141A1C3175839B00051887F /* FirstRunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunViewController.m; sourceTree = "<group>"; };
@@ -188,6 +195,8 @@
 				50B8DB7B175886A100D4C2FF /* MapPoint.m */,
 				462F77131758E50A006486BA /* AudioRecordingManager.h */,
 				462F77141758E50A006486BA /* AudioRecordingManager.m */,
+				50B8DB871759268F00D4C2FF /* CustomizedAnnotationView.h */,
+				50B8DB881759268F00D4C2FF /* CustomizedAnnotationView.m */,
 			);
 			path = imlost;
 			sourceTree = "<group>";
@@ -212,6 +221,8 @@
 		C141A1D017587DD40051887F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				50B8DB8A1759271400D4C2FF /* blue_dot.png */,
+				50B8DB8B1759271400D4C2FF /* green_dot.png */,
 				462F771D17590CB9006486BA /* plus.png */,
 				462F77161759080B006486BA /* kid.png */,
 				462F77171759080B006486BA /* parent.png */,
@@ -289,6 +300,8 @@
 				462F77181759080B006486BA /* kid.png in Resources */,
 				462F77191759080B006486BA /* parent.png in Resources */,
 				462F771E17590CB9006486BA /* plus.png in Resources */,
+				50B8DB8C1759271400D4C2FF /* blue_dot.png in Resources */,
+				50B8DB8D1759271400D4C2FF /* green_dot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +325,7 @@
 				C141A1CC1758436D0051887F /* SetupViewController.m in Sources */,
 				50B8DB7C175886A100D4C2FF /* MapPoint.m in Sources */,
 				462F77151758E50B006486BA /* AudioRecordingManager.m in Sources */,
+				50B8DB891759268F00D4C2FF /* CustomizedAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

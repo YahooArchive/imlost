@@ -10,7 +10,7 @@
 
 
 @implementation MapPoint
-@synthesize coordinate, title, subtitle;
+@synthesize coordinate, title, subtitle, type;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)c title:(NSString *)t subtitle:(NSString *)st;
 {
