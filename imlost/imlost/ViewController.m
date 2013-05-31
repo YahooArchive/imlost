@@ -181,8 +181,8 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
     // Origin Location
     // TODO:nanshi - For demo, this is mom's location 37.409966,-122.026181
     CLLocationCoordinate2D locOrigin;
-    locOrigin.latitude = 37.409966;
-    locOrigin.longitude = -122.026181;
+    locOrigin.latitude = 37.411517;
+    locOrigin.longitude = -122.026084;
     MapPoint *origin = [[MapPoint alloc] initWithCoordinate:locOrigin title:@"Mom" subtitle:@""];
     origin.type = 0;
     [mapView addAnnotation:origin];
@@ -196,9 +196,116 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
     destination.type = 1;
     [mapView addAnnotation:destination];
     
-    
+
     //    arrRoutePoints = [self getRoutePointFrom:origin to:destination];
     [self drawRoute];
+    
+    [self animateRoute];
+}
+
+- (void)animateRoute
+{
+    
+    CLLocationCoordinate2D loc;
+    loc.latitude = 37.412327;
+    loc.longitude = -122.025923;
+    __block MapPoint *annotation = [[MapPoint alloc] initWithCoordinate:loc title:@"" subtitle:@""];
+    annotation.type = 2;
+    [mapView addAnnotation:annotation];
+    [UIView animateWithDuration:3.0
+     animations:^{
+         [mapView removeAnnotation:annotation];
+         CLLocationCoordinate2D loc;
+         loc.latitude = 37.414398;
+         loc.longitude = -122.025194;
+         annotation = [[MapPoint alloc] initWithCoordinate:loc title:@"" subtitle:@""];
+         annotation.type = 2;
+         [annotation setCoordinate:loc];
+         [mapView addAnnotation:annotation];
+     }
+     completion:^(BOOL finished){
+         
+         [UIView animateWithDuration:3.0
+              animations:^{
+                  [mapView removeAnnotation:annotation];
+                  CLLocationCoordinate2D loc;
+                  loc.latitude = 37.415318;
+                  loc.longitude = -122.024915;
+                  annotation = [[MapPoint alloc] initWithCoordinate:loc title:@"" subtitle:@""];
+                  annotation.type = 2;
+                  [annotation setCoordinate:loc];
+                  [mapView addAnnotation:annotation];
+              }
+              completion:^(BOOL finished){
+                  
+              [UIView animateWithDuration:3.0
+                       animations:^{
+                           [mapView removeAnnotation:annotation];
+                           CLLocationCoordinate2D loc;
+                           loc.latitude = 37.416119;
+                           loc.longitude = -122.024764;
+                           annotation = [[MapPoint alloc] initWithCoordinate:loc title:@"" subtitle:@""];
+                           annotation.type = 2;
+                           [annotation setCoordinate:loc];
+                           [mapView addAnnotation:annotation];
+                       }
+                       completion:^(BOOL finished){
+                           [UIView animateWithDuration:3.0
+                            animations:^{
+                                [mapView removeAnnotation:annotation];
+                                CLLocationCoordinate2D loc;
+                                loc.latitude = 37.416409;
+                                loc.longitude = -122.025548;
+                                annotation = [[MapPoint alloc] initWithCoordinate:loc title:@"" subtitle:@""];
+                                annotation.type = 2;
+                                [annotation setCoordinate:loc];
+                                [mapView addAnnotation:annotation];
+                            }
+                            completion:^(BOOL finished){
+                                [UIView animateWithDuration:3.0
+                                 animations:^{
+                                     [mapView removeAnnotation:annotation];
+                                     CLLocationCoordinate2D loc;
+                                     loc.latitude = 37.417193;
+                                     loc.longitude = -122.026513;
+                                     annotation = [[MapPoint alloc] initWithCoordinate:loc title:@"" subtitle:@""];
+                                     annotation.type = 2;
+                                     [annotation setCoordinate:loc];
+                                     [mapView addAnnotation:annotation];
+                                 }
+                                 completion:^(BOOL finished){
+                                     [UIView animateWithDuration:3.0
+                                          animations:^{
+                                              [mapView removeAnnotation:annotation];
+                                              CLLocationCoordinate2D loc;
+                                              loc.latitude = 37.417917;
+                                              loc.longitude = -122.026792;
+                                              annotation = [[MapPoint alloc] initWithCoordinate:loc title:@"" subtitle:@""];
+                                              annotation.type = 2;
+                                              [annotation setCoordinate:loc];
+                                              [mapView addAnnotation:annotation];
+                                          }
+                                          completion:^(BOOL finished){
+                                              
+                                              
+                                          }];
+                                 }];
+
+                                
+                            }];
+
+                           
+                           
+                       }];
+                  
+                  
+                  
+              }];
+         
+         
+     }];
+    
+    
 }
 
 - (void)drawRoute
@@ -273,8 +380,7 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
     CustomizedAnnotationView *pinView = (CustomizedAnnotationView *) [mapView
                                                                       dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
     
-    if (!pinView)
-    {
+    if (!pinView) {
         pinView = [[CustomizedAnnotationView alloc]
                    initWithAnnotation:annotation
                    reuseIdentifier:annotationIdentifier];
@@ -285,13 +391,24 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
         
         MapPoint *mapPoint = (MapPoint *) annotation;
         NSInteger type = mapPoint.type;
+    
+        UIImage *image = [UIImage imageNamed: (type == 1) ? @"green_dot.png" : @"blue_dot.png"];
+        if (type != 2) {
+            [pinView setImage: image];
+        }
         
-        UIImage *image = [UIImage imageNamed: (type == 0) ? @"blue_dot.png" : @"green_dot.png"];
-        //        [image setFrame:CGRectMake(0, 0, 30, 30)];
-        [pinView setImage: image];
-    }
-    else
-    {
+        CGRect resizeRect;
+        resizeRect.size.width = 15.0;
+        resizeRect.size.height = 15.0;
+        resizeRect.origin = (CGPoint){0.0f, 0.0f};
+        UIGraphicsBeginImageContext(resizeRect.size);
+        [image drawInRect:resizeRect];
+        UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        if (type == 2) {
+            [pinView setImage:resizedImage];
+        }
+    } else {
         pinView.annotation = annotation;
     }
     

@@ -10,6 +10,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
+//TODO:nanshi - need to merge MapPoint with MapPin. Just realized it's duplicated classes.
+
 /**
  * Customized MapPoint conforms to MKAnnotation delegate.
  */
