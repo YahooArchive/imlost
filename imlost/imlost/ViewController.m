@@ -33,7 +33,7 @@
 #import "AudioRecordingManager.h"
 
 
-NSString * const kTesterPhoneNumberForText = @"+4053341946";
+NSString * const kTesterPhoneNumberForText = @"+6262360908";
 
 
 @interface ViewController ()
@@ -299,7 +299,7 @@ NSString * const kTesterPhoneNumberForText = @"+4053341946";
 - (void)sendMapTextToPerson:(Person *)person {
 //    NSString *locationURL = [NSString stringWithFormat:@"https://students6.ics.uci.edu/~limll/location.php?username=%@", username];
     
-    NSString *locationURL = @"imlost://testing";
+    NSString *locationURL = @"imlost://locate";
     for(NSString* number in person.numbers)
     {
         NSString *cleannedNumber = 
@@ -358,7 +358,7 @@ NSString * const kTesterPhoneNumberForText = @"+4053341946";
 //    [self sendRequest: newLocation];
 
     static BOOL isTextSent = NO;
-    if (!isTextSent)
+    if (!isTextSent && self.isDependent)
     {
         Person * person = [[Person alloc] init];
         person.name = @"Mom";

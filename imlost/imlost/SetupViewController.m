@@ -61,6 +61,9 @@
     self.audioFilepath = [NSString stringWithFormat:@"%@/%@.caf", [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"], @"I'm-Lost-Audio" ];
 
     self.audioManager = [[AudioRecordingManager alloc] init];
+
+    UIBarButtonItem *confirmButton = [[UIBarButtonItem alloc] initWithTitle:@"Confirm" style:UIBarButtonItemStylePlain target:self action:@selector(confirmButtonTapped:)];
+    self.navigationItem.rightBarButtonItem = confirmButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,6 +72,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)confirmButtonTapped:(id)sender
+{
+    // should not do this, o well.
+    exit(0);
+}
 
 #pragma mark Button Pressed
 
