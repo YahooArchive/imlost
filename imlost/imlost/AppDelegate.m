@@ -25,16 +25,24 @@
 // 
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "FirstRunViewController.h"
 #import "Person.h"
 #import "PeopleViewController.h"
 #import "DataManager.h"
 
+NSString * const kYFUserDefaultsKeyAppHasLaunchedBefore = @"kYFUserDefaultsKeyAppHasLaunchedBefore";
+
+
 @implementation AppDelegate {
-	NSMutableArray *people;
+//	NSMutableArray *people;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{/*
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    /*
     
     people = [[NSMutableArray alloc] init];
 	Person *person = [[Person alloc] init];
@@ -48,7 +56,9 @@
 	[people addObject:person];
     
     [DataManager writeToPlist:@"people.plist" withData:people];
-    */
+    */    
+    [self firstTimeCheck];
+    
     return YES;
 }
 							
@@ -77,6 +87,32 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma  mark First Run
+
+- (void) firstTimeCheck
+{
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kYFUserDefaultsKeyAppHasLaunchedBefore])
+    {
+        // app already launched
+        NSLog(@"app already launched");
+        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+        self.window.rootViewController = self.viewController;
+    }
+    else
+    {        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYFUserDefaultsKeyAppHasLaunchedBefore];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        // This is the first launch ever
+        NSLog(@"first launch ever");
+        self.firstRunViewController = [[FirstRunViewController alloc] initWithNibName:@"FirstRunViewController" bundle:nil];
+        self.window.rootViewController = self.firstRunViewController;
+
+    }
+
+    [self.window makeKeyAndVisible];
 }
 
 @end

@@ -26,8 +26,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class ViewController;
+@class FirstRunViewController;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) FirstRunViewController *firstRunViewController;
 
 @end

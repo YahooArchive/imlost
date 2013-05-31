@@ -40,17 +40,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    // Create the manager object
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    
-    // This is the most important property to set for the manager. It ultimately determines how the manager will
-    // attempt to acquire location and thus, the amount of power that will be consumed.
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    username = @"derek";
+//	// Do any additional setup after loading the view, typically from a nib.
+//    
+//    // Create the manager object
+//    locationManager = [[CLLocationManager alloc] init];
+//    locationManager.delegate = self;
+//    
+//    // This is the most important property to set for the manager. It ultimately determines how the manager will
+//    // attempt to acquire location and thus, the amount of power that will be consumed.
+//    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    
+//    username = @"derek";
 
 }
 

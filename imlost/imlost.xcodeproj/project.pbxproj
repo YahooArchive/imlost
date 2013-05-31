@@ -16,7 +16,6 @@
 		0A528E33172143740038609E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E32172143740038609E /* Default@2x.png */; };
 		0A528E35172143740038609E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E34172143740038609E /* Default-568h@2x.png */; };
 		0A528E52172143AF0038609E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A528E42172143AF0038609E /* AppDelegate.m */; };
-		0A528E53172143AF0038609E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E43172143AF0038609E /* MainStoryboard_iPhone.storyboard */; };
 		0A528E54172143AF0038609E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A528E45172143AF0038609E /* ViewController.m */; };
 		0A528E55172143AF0038609E /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A528E47172143AF0038609E /* PeopleViewController.m */; };
 		0A528E56172143AF0038609E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A528E49172143AF0038609E /* Person.m */; };
@@ -31,6 +30,9 @@
 		0A528E64172144310038609E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A528E63172144310038609E /* MapKit.framework */; };
 		0A528E66172144980038609E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E65172144970038609E /* icon.png */; };
 		0A528E681721449D0038609E /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E671721449D0038609E /* icon@2x.png */; };
+		C141A1C1175838540051887F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C0175838540051887F /* ViewController.xib */; };
+		C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1C3175839B00051887F /* FirstRunViewController.m */; };
+		C141A1C6175839B00051887F /* FirstRunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C4175839B00051887F /* FirstRunViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +49,6 @@
 		0A528E34172143740038609E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0A528E41172143AF0038609E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A528E42172143AF0038609E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0A528E43172143AF0038609E /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		0A528E44172143AF0038609E /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0A528E45172143AF0038609E /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0A528E46172143AF0038609E /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
@@ -69,6 +70,10 @@
 		0A528E63172144310038609E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0A528E65172144970038609E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0A528E671721449D0038609E /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		C141A1C0175838540051887F /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		C141A1C2175839B00051887F /* FirstRunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstRunViewController.h; sourceTree = "<group>"; };
+		C141A1C3175839B00051887F /* FirstRunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstRunViewController.m; sourceTree = "<group>"; };
+		C141A1C4175839B00051887F /* FirstRunViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstRunViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +128,7 @@
 			children = (
 				0A528E41172143AF0038609E /* AppDelegate.h */,
 				0A528E42172143AF0038609E /* AppDelegate.m */,
-				0A528E43172143AF0038609E /* MainStoryboard_iPhone.storyboard */,
+				C141A1C0175838540051887F /* ViewController.xib */,
 				0A528E44172143AF0038609E /* ViewController.h */,
 				0A528E45172143AF0038609E /* ViewController.m */,
 				0A528E46172143AF0038609E /* PeopleViewController.h */,
@@ -139,6 +144,9 @@
 				0A528E50172143AF0038609E /* TrackingViewController.h */,
 				0A528E51172143AF0038609E /* TrackingViewController.m */,
 				0A528E25172143740038609E /* Supporting Files */,
+				C141A1C2175839B00051887F /* FirstRunViewController.h */,
+				C141A1C3175839B00051887F /* FirstRunViewController.m */,
+				C141A1C4175839B00051887F /* FirstRunViewController.xib */,
 			);
 			path = imlost;
 			sourceTree = "<group>";
@@ -215,12 +223,13 @@
 				0A528E31172143740038609E /* Default.png in Resources */,
 				0A528E33172143740038609E /* Default@2x.png in Resources */,
 				0A528E35172143740038609E /* Default-568h@2x.png in Resources */,
-				0A528E53172143AF0038609E /* MainStoryboard_iPhone.storyboard in Resources */,
 				0A528E5E172144170038609E /* HousesThatDerekLoves.png in Resources */,
 				0A528E5F172144170038609E /* 4_button.png in Resources */,
 				0A528E60172144170038609E /* 3_sButton.png in Resources */,
 				0A528E66172144980038609E /* icon.png in Resources */,
 				0A528E681721449D0038609E /* icon@2x.png in Resources */,
+				C141A1C1175838540051887F /* ViewController.xib in Resources */,
+				C141A1C6175839B00051887F /* FirstRunViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +249,7 @@
 				0A528E58172143AF0038609E /* DataManager.m in Sources */,
 				0A528E59172143AF0038609E /* MapPin.m in Sources */,
 				0A528E5A172143AF0038609E /* TrackingViewController.m in Sources */,
+				C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +364,7 @@
 				0A528E40172143740038609E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
