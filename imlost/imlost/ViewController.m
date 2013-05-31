@@ -25,12 +25,16 @@
 // 
 
 #import "ViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 #import "DataManager.h"
 #import "Person.h"
 #import "MapPoint.h"
 #import "AudioRecordingManager.h"
 
+
 NSString * const kTesterPhoneNumberForText = @"+4053341946";
+
 
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *button;
@@ -48,6 +52,8 @@ NSString * const kTesterPhoneNumberForText = @"+4053341946";
 @property (strong, nonatomic) AudioRecordingManager * audioManager;
 
 @property (weak, nonatomic) IBOutlet MKMapView *dependentMapView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageviewParent;
+@property (weak, nonatomic) IBOutlet UIImageView *imageviewKid;
 
 //-(IBAction)pressed:(id)sender;
 
@@ -95,6 +101,21 @@ NSString * const kTesterPhoneNumberForText = @"+4053341946";
         [self.view addSubview:self.mapView];
 
         [self startRoute];
+    }
+    else
+    {
+        double delayInSeconds = 3.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            CGRect frameOriginal = self.imageviewKid.frame;
+            CGRect frame = frameOriginal;
+//            frame.origin.x = CGRectGetMidX(frameOriginal);
+//            frame.origin.y = CGRectGetMidY(frameOriginal);
+            self.imageviewKid.frame = frame;
+            self.imageviewKid.hidden = NO;
+
+            [self playAudio];
+        });
     }
 }
 
@@ -389,6 +410,11 @@ NSString * const kTesterPhoneNumberForText = @"+4053341946";
 }
 
 - (IBAction)onPlayAudioButtonTapped:(id)sender
+{
+    [self playAudio];
+}
+
+- (void)playAudio
 {
     [self.audioManager playback:self.audioFilepath];
 }

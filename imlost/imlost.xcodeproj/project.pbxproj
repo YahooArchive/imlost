@@ -31,6 +31,10 @@
 		0A528E66172144980038609E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E65172144970038609E /* icon.png */; };
 		0A528E681721449D0038609E /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A528E671721449D0038609E /* icon@2x.png */; };
 		462F77151758E50B006486BA /* AudioRecordingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 462F77141758E50A006486BA /* AudioRecordingManager.m */; };
+		462F77181759080B006486BA /* kid.png in Resources */ = {isa = PBXBuildFile; fileRef = 462F77161759080B006486BA /* kid.png */; };
+		462F77191759080B006486BA /* parent.png in Resources */ = {isa = PBXBuildFile; fileRef = 462F77171759080B006486BA /* parent.png */; };
+		462F771C175909E5006486BA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 462F771A175909C2006486BA /* QuartzCore.framework */; };
+		462F771E17590CB9006486BA /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 462F771D17590CB9006486BA /* plus.png */; };
 		50B8DB7C175886A100D4C2FF /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8DB7B175886A100D4C2FF /* MapPoint.m */; };
 		C141A1C1175838540051887F /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1C0175838540051887F /* ViewController.xib */; };
 		C141A1C5175839B00051887F /* FirstRunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1C3175839B00051887F /* FirstRunViewController.m */; };
@@ -80,6 +84,10 @@
 		0A528E671721449D0038609E /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		462F77131758E50A006486BA /* AudioRecordingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordingManager.h; sourceTree = "<group>"; };
 		462F77141758E50A006486BA /* AudioRecordingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordingManager.m; sourceTree = "<group>"; };
+		462F77161759080B006486BA /* kid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kid.png; path = images/kid.png; sourceTree = "<group>"; };
+		462F77171759080B006486BA /* parent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = parent.png; path = images/parent.png; sourceTree = "<group>"; };
+		462F771A175909C2006486BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		462F771D17590CB9006486BA /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = images/plus.png; sourceTree = "<group>"; };
 		50B8DB7A175886A100D4C2FF /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
 		50B8DB7B175886A100D4C2FF /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
 		C141A1C0175838540051887F /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
@@ -100,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462F771C175909E5006486BA /* QuartzCore.framework in Frameworks */,
 				C141A1CF175848C90051887F /* AVFoundation.framework in Frameworks */,
 				C141A1C817583ED40051887F /* MobileCoreServices.framework in Frameworks */,
 				0A528E64172144310038609E /* MapKit.framework in Frameworks */,
@@ -135,6 +144,7 @@
 		0A528E1D172143740038609E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				462F771A175909C2006486BA /* QuartzCore.framework */,
 				C141A1CE175848C90051887F /* AVFoundation.framework */,
 				C141A1C717583ED40051887F /* MobileCoreServices.framework */,
 				0A528E63172144310038609E /* MapKit.framework */,
@@ -202,6 +212,9 @@
 		C141A1D017587DD40051887F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				462F771D17590CB9006486BA /* plus.png */,
+				462F77161759080B006486BA /* kid.png */,
+				462F77171759080B006486BA /* parent.png */,
 				C141A1D117587DE10051887F /* imlost-bckd1.png */,
 				C141A1D317587E2B0051887F /* imlost-bckd2.png */,
 			);
@@ -273,6 +286,9 @@
 				C141A1CD1758436D0051887F /* SetupViewController.xib in Resources */,
 				C141A1D217587DE10051887F /* imlost-bckd1.png in Resources */,
 				C141A1D417587E2B0051887F /* imlost-bckd2.png in Resources */,
+				462F77181759080B006486BA /* kid.png in Resources */,
+				462F77191759080B006486BA /* parent.png in Resources */,
+				462F771E17590CB9006486BA /* plus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
