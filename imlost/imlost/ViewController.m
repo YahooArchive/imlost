@@ -180,12 +180,12 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
     
     // Origin Location
     // TODO:nanshi - For demo, this is mom's location 37.409966,-122.026181
-    CLLocationCoordinate2D locOrigin;
-    locOrigin.latitude = 37.411517;
-    locOrigin.longitude = -122.026084;
-    MapPoint *origin = [[MapPoint alloc] initWithCoordinate:locOrigin title:@"Mom" subtitle:@""];
-    origin.type = 0;
-    [mapView addAnnotation:origin];
+//    CLLocationCoordinate2D locOrigin;
+//    locOrigin.latitude = 37.411517;
+//    locOrigin.longitude = -122.026084;
+//    MapPoint *origin = [[MapPoint alloc] initWithCoordinate:locOrigin title:@"Mom" subtitle:@""];
+//    origin.type = 0;
+//    [mapView addAnnotation:origin];
     
     // Destination Location.
     // TODO:nanshi - For demo, this is kid's location 37.4183,-122.025601
@@ -207,11 +207,13 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
 {
     
     CLLocationCoordinate2D loc;
-    loc.latitude = 37.412327;
-    loc.longitude = -122.025923;
+    loc.latitude = 37.411517;
+    loc.longitude = -122.026084;
     __block MapPoint *annotation = [[MapPoint alloc] initWithCoordinate:loc title:@"" subtitle:@""];
     annotation.type = 2;
     [mapView addAnnotation:annotation];
+    
+    
     [UIView animateWithDuration:3.0
      animations:^{
          [mapView removeAnnotation:annotation];
@@ -392,20 +394,31 @@ NSString * const kTesterPhoneNumberForText = @"+6262360908";
         MapPoint *mapPoint = (MapPoint *) annotation;
         NSInteger type = mapPoint.type;
     
-        UIImage *image = [UIImage imageNamed: (type == 1) ? @"green_dot.png" : @"blue_dot.png"];
+        UIImage *image = [UIImage imageNamed: (type == 1) ? @"kid.png" : @"parent.png"];
         if (type != 2) {
             [pinView setImage: image];
         }
         
         CGRect resizeRect;
-        resizeRect.size.width = 15.0;
-        resizeRect.size.height = 15.0;
-        resizeRect.origin = (CGPoint){0.0f, 0.0f};
-        UIGraphicsBeginImageContext(resizeRect.size);
-        [image drawInRect:resizeRect];
-        UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
         if (type == 2) {
+            resizeRect.size.width = 35.0;
+            resizeRect.size.height = 35.0;
+            resizeRect.origin = (CGPoint){0.0f, 0.0f};
+            UIGraphicsBeginImageContext(resizeRect.size);
+            [image drawInRect:resizeRect];
+            UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+
+            [pinView setImage:resizedImage];
+        } else {
+            resizeRect.size.width = 35.0;
+            resizeRect.size.height = 35.0;
+            resizeRect.origin = (CGPoint){0.0f, 0.0f};
+            UIGraphicsBeginImageContext(resizeRect.size);
+            [image drawInRect:resizeRect];
+            UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
             [pinView setImage:resizedImage];
         }
     } else {
