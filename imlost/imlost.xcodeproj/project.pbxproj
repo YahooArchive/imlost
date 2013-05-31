@@ -37,6 +37,8 @@
 		C141A1CC1758436D0051887F /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C141A1CA1758436D0051887F /* SetupViewController.m */; };
 		C141A1CD1758436D0051887F /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C141A1CB1758436D0051887F /* SetupViewController.xib */; };
 		C141A1CF175848C90051887F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C141A1CE175848C90051887F /* AVFoundation.framework */; };
+		C141A1D217587DE10051887F /* imlost-bckd1.png in Resources */ = {isa = PBXBuildFile; fileRef = C141A1D117587DE10051887F /* imlost-bckd1.png */; };
+		C141A1D417587E2B0051887F /* imlost-bckd2.png in Resources */ = {isa = PBXBuildFile; fileRef = C141A1D317587E2B0051887F /* imlost-bckd2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,8 @@
 		C141A1CA1758436D0051887F /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		C141A1CB1758436D0051887F /* SetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 		C141A1CE175848C90051887F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C141A1D117587DE10051887F /* imlost-bckd1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imlost-bckd1.png"; sourceTree = "<group>"; };
+		C141A1D317587E2B0051887F /* imlost-bckd2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imlost-bckd2.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 		0A528E24172143740038609E /* imlost */ = {
 			isa = PBXGroup;
 			children = (
+				C141A1D017587DD40051887F /* Images */,
 				0A528E41172143AF0038609E /* AppDelegate.h */,
 				0A528E42172143AF0038609E /* AppDelegate.m */,
 				C141A1C0175838540051887F /* ViewController.xib */,
@@ -182,6 +187,15 @@
 				0A528E34172143740038609E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C141A1D017587DD40051887F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C141A1D117587DE10051887F /* imlost-bckd1.png */,
+				C141A1D317587E2B0051887F /* imlost-bckd2.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +261,8 @@
 				C141A1C1175838540051887F /* ViewController.xib in Resources */,
 				C141A1C6175839B00051887F /* FirstRunViewController.xib in Resources */,
 				C141A1CD1758436D0051887F /* SetupViewController.xib in Resources */,
+				C141A1D217587DE10051887F /* imlost-bckd1.png in Resources */,
+				C141A1D417587E2B0051887F /* imlost-bckd2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
