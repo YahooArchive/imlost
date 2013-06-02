@@ -1,0 +1,14 @@
+PODS:
+  - AFHTTPRequestOperationLogger (HEAD based on 0.10.0):
+    - AFNetworking (>= 0.9.0)
+  - AFNetworking (HEAD based on 1.2.1)
+
+DEPENDENCIES:
+  - AFHTTPRequestOperationLogger (HEAD)
+  - AFNetworking (HEAD)
+
+SPEC CHECKSUMS:
+  AFHTTPRequestOperationLogger: 34ba125cb9eeb77a3b67aaaca105720ba3a0798c
+  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
+
+COCOAPODS: 0.20.2
